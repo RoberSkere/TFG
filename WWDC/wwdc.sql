@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:8889
--- Tiempo de generación: 04-12-2018 a las 00:12:07
--- Versión del servidor: 5.6.35
--- Versión de PHP: 7.1.6
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 25-05-2021 a las 14:28:57
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,11 +30,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admins` (
   `ID_admin` int(11) NOT NULL,
-  `usuario` varchar(50) NOT NULL,
-  `hash_pass` varchar(60) NOT NULL,
+  `usuario` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `hash_pass` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
   `nivel` int(1) NOT NULL,
   `actualizado` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `admins`
@@ -49,10 +51,10 @@ INSERT INTO `admins` (`ID_admin`, `usuario`, `hash_pass`, `nivel`, `actualizado`
 
 CREATE TABLE `categoria_evento` (
   `id_categoria` tinyint(10) NOT NULL,
-  `cat_evento` varchar(50) NOT NULL,
-  `icono` varchar(15) NOT NULL,
+  `cat_evento` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `icono` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
   `actualizado` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `categoria_evento`
@@ -72,44 +74,44 @@ INSERT INTO `categoria_evento` (`id_categoria`, `cat_evento`, `icono`, `actualiz
 
 CREATE TABLE `eventos` (
   `evento_id` tinyint(10) NOT NULL,
-  `nombre_evento` varchar(60) NOT NULL,
+  `nombre_evento` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
   `fecha_evento` date NOT NULL,
-  `hora_evento` varchar(10) NOT NULL,
+  `hora_evento` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `id_cat_evento` tinyint(10) NOT NULL,
   `id_inv` tinyint(4) NOT NULL,
-  `clave` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `clave` varchar(10) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `eventos`
 --
 
 INSERT INTO `eventos` (`evento_id`, `nombre_evento`, `fecha_evento`, `hora_evento`, `id_cat_evento`, `id_inv`, `clave`) VALUES
-(4, 'HTML5 y CSS3', '2016-12-09', '02:00 PM', 3, 3, 'taller_01'),
-(6, 'WordPress', '2016-12-09', '19:00:00', 3, 5, 'taller_13'),
-(7, 'Como ser freelancer', '2016-12-09', '10:00:00', 2, 6, 'conf_01'),
-(8, 'Tecnologías del Futuro PHP', '2016-12-09', '05:00 PM', 2, 3, 'conf_02'),
-(9, 'Seguridad en la Web', '2016-12-09', '07:00 PM', 2, 2, 'conf_03'),
-(10, 'Diseño UI y UX para móviles', '2016-12-09', '10:00:00', 1, 6, 'sem_01'),
-(11, 'Angular 5', '2016-12-10', '10:00 AM', 3, 3, 'taller_02'),
-(12, 'PHP y MySQL', '2016-12-10', '12:00:00', 3, 2, 'taller_03'),
-(13, 'JavaScript Avanzado', '2016-12-10', '14:00:00', 3, 3, 'taller_04'),
-(14, 'SEO en Google', '2016-12-10', '17:00:00', 3, 4, 'taller_05'),
-(15, 'De Photoshop a HTML5 y CSS3', '2016-12-10', '19:00:00', 3, 5, 'taller_06'),
-(16, 'PHP Intermedio y Avanzado', '2016-12-10', '21:00:00', 3, 6, 'taller_07'),
-(17, 'Como crear una tienda online que venda millones en pocos día', '2016-12-10', '10:00:00', 2, 6, 'conf_04'),
-(18, 'Los mejores lugares para encontrar trabajo', '2016-12-10', '17:00:00', 2, 1, 'conf_05'),
-(19, 'Pasos para crear un negocio rentable ', '2016-12-10', '19:00:00', 2, 2, 'conf_06'),
-(20, 'Aprende a Programar en una mañana', '2016-12-10', '10:00:00', 1, 3, 'sem_02'),
-(21, 'Diseño UI y UX para móviles', '2016-12-10', '17:00:00', 1, 5, 'sem_03'),
-(22, 'Laravel', '2016-12-11', '10:00:00', 3, 1, 'taller_08'),
-(23, 'Crea tu propia API', '2016-12-11', '12:00:00', 3, 2, 'taller_09'),
-(24, 'JavaScript y jQuery', '2016-12-11', '14:00:00', 3, 3, 'taller_10'),
-(25, 'Creando Plantillas para WordPress', '2016-12-11', '17:00:00', 3, 4, 'taller_11'),
-(26, 'Tiendas Virtuales en Magento', '2016-12-11', '19:00:00', 3, 5, 'taller_12'),
-(30, 'Creando una App en Android en una mañana', '2016-12-11', '10:00:00', 1, 4, 'sem_04'),
-(31, 'Creando una App en iOS en una tarde', '2016-12-11', '17:00:00', 1, 1, 'sem_05'),
-(32, 'Flexbox para principiantes', '2016-12-10', '11:00:00', 2, 4, 'conf_07');
+(4, 'HTML5 y CSS3', '2021-06-15', '02:00 PM', 3, 3, 'taller_01'),
+(6, 'WordPress', '2021-06-15', '19:00:00', 3, 5, 'taller_13'),
+(7, 'Como ser freelancer', '2021-06-15', '10:00:00', 2, 6, 'conf_01'),
+(8, 'Tecnologías del Futuro PHP', '2021-06-15', '05:00 PM', 2, 3, 'conf_02'),
+(9, 'Seguridad en la Web', '2021-06-15', '07:00 PM', 2, 2, 'conf_03'),
+(10, 'Diseño UI y UX para móviles', '2021-06-15', '10:00:00', 1, 6, 'sem_01'),
+(11, 'Angular 5', '2021-06-15', '10:00 AM', 3, 3, 'taller_02'),
+(12, 'PHP y MySQL', '2021-06-15', '12:00:00', 3, 2, 'taller_03'),
+(13, 'JavaScript Avanzado', '2021-06-15', '14:00:00', 3, 3, 'taller_04'),
+(14, 'SEO en Google', '2021-06-15', '17:00:00', 3, 4, 'taller_05'),
+(15, 'De Photoshop a HTML5 y CSS3', '2021-06-15', '19:00:00', 3, 5, 'taller_06'),
+(16, 'PHP Intermedio y Avanzado', '2021-06-15', '21:00:00', 3, 6, 'taller_07'),
+(17, 'Como crear una tienda online que venda millones en pocos día', '2021-06-15', '10:00:00', 2, 6, 'conf_04'),
+(18, 'Los mejores lugares para encontrar trabajo', '2021-06-15', '17:00:00', 2, 1, 'conf_05'),
+(19, 'Pasos para crear un negocio rentable ', '2021-06-15', '19:00:00', 2, 2, 'conf_06'),
+(20, 'Aprende a Programar en una mañana', '2021-06-15', '10:00:00', 1, 3, 'sem_02'),
+(21, 'Diseño UI y UX para móviles', '2021-06-15', '17:00:00', 1, 5, 'sem_03'),
+(22, 'Laravel', '2021-06-15', '10:00:00', 3, 1, 'taller_08'),
+(23, 'Crea tu propia API', '2021-06-15', '12:00:00', 3, 2, 'taller_09'),
+(24, 'JavaScript y jQuery', '2021-06-15', '14:00:00', 3, 3, 'taller_10'),
+(25, 'Creando Plantillas para WordPress', '2021-06-15', '17:00:00', 3, 4, 'taller_11'),
+(26, 'Tiendas Virtuales en Magento', '2021-06-15', '19:00:00', 3, 5, 'taller_12'),
+(30, 'Creando una App en Android en una mañana', '2021-06-15', '10:00:00', 1, 4, 'sem_04'),
+(31, 'Creando una App en iOS en una tarde', '2021-06-15', '17:00:00', 1, 1, 'sem_05'),
+(32, 'Flexbox para principiantes', '2021-06-15', '11:00:00', 2, 4, 'conf_07');
 
 -- --------------------------------------------------------
 
@@ -119,25 +121,24 @@ INSERT INTO `eventos` (`evento_id`, `nombre_evento`, `fecha_evento`, `hora_event
 
 CREATE TABLE `invitados` (
   `invitado_id` tinyint(4) NOT NULL,
-  `nombre_invitado` varchar(30) NOT NULL,
-  `apellido_invitado` varchar(30) NOT NULL,
-  `descripcion` text NOT NULL,
-  `url_imagen` varchar(50) NOT NULL,
+  `nombre_invitado` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `apellido_invitado` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion` mediumtext COLLATE utf8_spanish_ci NOT NULL,
+  `url_imagen` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `editado` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `invitados`
 --
 
 INSERT INTO `invitados` (`invitado_id`, `nombre_invitado`, `apellido_invitado`, `descripcion`, `url_imagen`, `editado`) VALUES
-(1, 'Rafael ', 'Bautista', 'Praesent rutrum efficitur pharetra. Vivamus scelerisque pretium velit, id tempor turpis pulvinar et. Ut bibendum finibus massa non molestie.', 'invitado1.jpg', '0000-00-00 00:00:00'),
+(1, 'Rafael ', 'Bautista', 'Rafael experto en desarrollo móvil. Comprende todo tipo de patrones de algoritmia.', 'invitado1.jpg', '0000-00-00 00:00:00'),
 (2, 'Shari', 'Herrera', 'Curabitur urna metus, placerat gravida lacus ut, lacinia congue orci. Maecenas luctus mi at ex blandit vehicula. Morbi porttitor tempus euismod.', 'invitado2.jpg', '0000-00-00 00:00:00'),
 (3, 'Gregorio', 'Sanchez', 'placerat gravida lacus ut, lacinia congue orci. Maecenas luctus mi at ex blandit vehicula. Morbi porttitor tempus euismod.', 'invitado3.jpg', '0000-00-00 00:00:00'),
 (4, 'Susana', 'Rivera', 'Praesent rutrum efficitur pharetra. Vivamus scelerisque pretium velit, id tempor turpis pulvinar et. Ut bibendum finibus', 'invitado4.jpg', '0000-00-00 00:00:00'),
 (5, 'Harold', 'Garcia', 'placerat gravida lacus ut, lacinia congue orci. Maecenas luctus mi at ex blandit vehicula. Morbi porttitor tempus euismod.', 'invitado5.jpg', '0000-00-00 00:00:00'),
-(6, 'Susan', 'Sanchez', 'Praesent rutrum efficitur pharetra. Vivamus scelerisque pretium velit, id tempor turpis pulvinar et. Ut bibendum finibus massa non molestie. Curabitur urna metus, placerat gravida lacus ut, lacinia congue orci. Maecenas luctus mi at ex blandit vehicula. Morbi porttitor tempus euismod.', 'invitado6.jpg', '0000-00-00 00:00:00'),
-(7, 'Juan Pablo', 'De la torre', '1o2i12', 'Captura de pantalla 2018-10-22 a la(s) 13.28.50.pn', '0000-00-00 00:00:00');
+(6, 'Susan', 'Sanchez', 'Praesent rutrum efficitur pharetra. Vivamus scelerisque pretium velit, id tempor turpis pulvinar et. Ut bibendum finibus massa non molestie. Curabitur urna metus, placerat gravida lacus ut, lacinia congue orci. Maecenas luctus mi at ex blandit vehicula. Morbi porttitor tempus euismod.', 'invitado6.jpg', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -147,8 +148,8 @@ INSERT INTO `invitados` (`invitado_id`, `nombre_invitado`, `apellido_invitado`, 
 
 CREATE TABLE `regalos` (
   `ID_regalo` int(11) NOT NULL,
-  `nombre_regalo` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `nombre_regalo` varchar(50) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `regalos`
@@ -167,16 +168,16 @@ INSERT INTO `regalos` (`ID_regalo`, `nombre_regalo`) VALUES
 
 CREATE TABLE `registrados` (
   `ID_Registrado` bigint(20) UNSIGNED NOT NULL,
-  `nombre_registrado` varchar(50) NOT NULL,
-  `apellido_registrado` varchar(50) NOT NULL,
-  `email_registrado` varchar(100) NOT NULL,
+  `nombre_registrado` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `apellido_registrado` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `email_registrado` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `fecha_registro` datetime NOT NULL,
-  `pases_articulos` longtext NOT NULL,
-  `talleres_registrados` longtext NOT NULL,
+  `pases_articulos` longtext COLLATE utf8_spanish_ci NOT NULL,
+  `talleres_registrados` longtext COLLATE utf8_spanish_ci NOT NULL,
   `regalo` int(11) NOT NULL,
-  `total_pagado` varchar(50) NOT NULL,
+  `total_pagado` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `pagado` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `registrados`
@@ -205,7 +206,10 @@ INSERT INTO `registrados` (`ID_Registrado`, `nombre_registrado`, `apellido_regis
 (43, 'Juan Pablo', 'De la torre', 'correo@correo.com', '2018-10-22 05:02:22', '{\"un_dia\":{\"cantidad\":\"1\"},\"pase_completo\":{\"cantidad\":\"\"},\"pase_2dias\":{\"cantidad\":\"\"},\"camisas\":1,\"etiquetas\":2}', '{\"eventos\":[\"6\"]}', 1, '43.3', 0),
 (44, 'Juan', 'De la t', 'correo@correo.com', '2018-10-22 05:04:18', '{\"un_dia\":{\"cantidad\":\"1\"},\"pase_completo\":{\"cantidad\":\"\"},\"pase_2dias\":{\"cantidad\":\"\"},\"camisas\":1}', '{\"eventos\":[\"8\"]}', 2, '39.3', 1),
 (45, 'Juan Pablo', 'DE', 'correo@correo.com', '2018-10-22 05:13:39', '{\"un_dia\":{\"cantidad\":\"1\"},\"pase_completo\":{\"cantidad\":\"\"},\"pase_2dias\":{\"cantidad\":\"\"},\"camisas\":1}', '{\"eventos\":[\"6\"]}', 2, '39.3', 1),
-(46, 'ca', 'ju', 'correo@correo.com', '2018-10-22 06:19:41', '{\"un_dia\":{\"cantidad\":\"1\"},\"pase_completo\":{\"cantidad\":\"\"},\"pase_2dias\":{\"cantidad\":\"\"},\"etiquetas\":1}', '{\"eventos\":[\"8\"]}', 1, '32', 0);
+(46, 'ca', 'ju', 'correo@correo.com', '2018-10-22 06:19:41', '{\"un_dia\":{\"cantidad\":\"1\"},\"pase_completo\":{\"cantidad\":\"\"},\"pase_2dias\":{\"cantidad\":\"\"},\"etiquetas\":1}', '{\"eventos\":[\"8\"]}', 1, '32', 0),
+(47, 'correo', '1', 'correo@correo.com', '2021-05-07 16:17:02', '{\"un_dia\":{\"cantidad\":\"1\"},\"pase_completo\":{\"cantidad\":\"1\"},\"pase_2dias\":{\"cantidad\":\"2\"},\"camisas\":1,\"etiquetas\":1}', '[]', 2, '181.3', 0),
+(48, '', '', '', '2021-05-25 11:58:21', '{\"un_dia\":{\"cantidad\":\"\"},\"pase_completo\":{\"cantidad\":\"1\"},\"pase_2dias\":{\"cantidad\":\"\"},\"camisas\":1,\"etiquetas\":1}', '[]', 1, '61.3', 0),
+(49, 'Roberto', 'Mengibar Arias', 'roberarias31@gmail.com', '2021-05-25 11:59:44', '{\"un_dia\":{\"cantidad\":\"\"},\"pase_completo\":{\"cantidad\":\"1\"},\"pase_2dias\":{\"cantidad\":\"\"},\"camisas\":2,\"etiquetas\":1}', '[]', 1, '70.6', 0);
 
 --
 -- Índices para tablas volcadas
@@ -260,31 +264,37 @@ ALTER TABLE `registrados`
 --
 ALTER TABLE `admins`
   MODIFY `ID_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
 --
 -- AUTO_INCREMENT de la tabla `categoria_evento`
 --
 ALTER TABLE `categoria_evento`
   MODIFY `id_categoria` tinyint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
   MODIFY `evento_id` tinyint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
 --
 -- AUTO_INCREMENT de la tabla `invitados`
 --
 ALTER TABLE `invitados`
-  MODIFY `invitado_id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `invitado_id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT de la tabla `regalos`
 --
 ALTER TABLE `regalos`
   MODIFY `ID_regalo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `registrados`
 --
 ALTER TABLE `registrados`
-  MODIFY `ID_Registrado` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `ID_Registrado` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -301,6 +311,7 @@ ALTER TABLE `eventos`
 --
 ALTER TABLE `registrados`
   ADD CONSTRAINT `registrados_ibfk_1` FOREIGN KEY (`regalo`) REFERENCES `regalos` (`ID_regalo`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
